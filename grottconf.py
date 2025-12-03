@@ -121,11 +121,11 @@ class Conf :
         #set defaultmode
         self.addparm("Generic","mode","proxy","gmode")
         #set default grott port
-        self.addparm("Generic","grottport",5279,"grottport")
+        self.addparm("Generic","grottport",5279,"ggrottport")
         #set default grott ip
         self.addparm("Generic","grottip","default","ggrottip")
         #set timezone (at this moment only used for influxdb)
-        self.addparm("Generic","tmzone","local","gtmzone")
+        self.addparm("Generic","tmzone","local","gtimezone")
         ### Growatt settings
         # self.growattip = "server.growatt.com"
         # For China:                     server-cn.growatt.com
@@ -535,6 +535,7 @@ class Conf :
         logger.info("Grott process environmental variables")
         if os.getenv('gmode') in ("sniff", "proxy", "server", "serversa") :  self.mode = self.getenv('gmode')
         if os.getenv('gverbose') != None :  self.verbose = self.getenv('gverbose')
+        if os.getenv('gloglevel') != None : self.loglevel = self.getenv('gloglevel')
         if os.getenv('gminrecl') != None :
             if 0 <= int(os.getenv('gminrecl')) <= 255  :     self.minrecl = self.getenv('gminrecl')
         if os.getenv('gdecrypt') != None : self.decrypt = self.getenv('gdecrypt')
@@ -558,8 +559,22 @@ class Conf :
             if 0 <= int(os.getenv('ggrowattport')) <= 65535  :  self.growattport = int(self.getenv('ggrowattport'))
             else :
                 if self.verbose : print("\nGrott Growatt server Port address env invalid")
-        #handle Serever environmentals
-        if os.getenv('ConnectionTimeout') != None :  self.nomqtt = self.getenv('ConnectionTimeout')
+        #handle Server environmentals
+        if os.getenv('gserverip') != None : self.serverip = self.getenv('gserverip')
+        if os.getenv('gserverport') != None :
+            if 0 <= int(os.getenv('gserverport')) <= 65535  :  self.serverport = int(self.getenv('gserverport'))
+            else :
+                if self.verbose : print("\nGrott server Port address env invalid")
+        if os.getenv('gserverpassthrough') != None : self.serverpassthrough = self.getenv('gserverpassthrough')
+        #handle HTP Server environmentals
+        if os.getenv('ghttpport') != None :
+            if 0 <= int(os.getenv('ghttpport')) <= 65535  :  self.httpport = int(self.getenv('ghttpport'))
+            else :
+                if self.verbose : print("\nGrott HTTP Port address env invalid")
+        if os.getenv('gapirespwait') != None : self.apirespwait = float(self.getenv('gapirespwait'))
+        if os.getenv('ginverterrespwait') != None : self.inverterrespwait = int(self.getenv('ginverterrespwait'))
+        if os.getenv('gdataloggerrespwait') != None : self.dataloggerrespwait = int(self.getenv('gdataloggerrespwait'))
+        if os.getenv('gConnectionTimeout') != None : self.ConnectionTimeout = int(self.getenv('gConnectionTimeout'))
         #handle mqtt environmentals
         if os.getenv('gnomqtt') != None :  self.nomqtt = self.getenv('gnomqtt')
         if os.getenv('gmqttip') != None : self.mqttip = self.getenv('gmqttip')
