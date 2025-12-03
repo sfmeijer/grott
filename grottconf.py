@@ -548,22 +548,12 @@ class Conf :
         if os.getenv('gtimezone') != None : self.tmzone = self.getenv('gtimezone')
         if os.getenv('gsendbuf') != None : self.sendbuf = self.getenv('gsendbuf')
         if os.getenv('ginverterid') != None :  self.inverterid = self.getenv('ginverterid')
-        if os.getenv('ggrottip') != None :
-            try:
-                ipaddress.ip_address(os.getenv('ggrottip'))
-                self.grottip = self.getenv('ggrottip')
-            except:
-                if self.verbose : print("\nGrott IP address env invalid")
+        if os.getenv('ggrottip') != None : self.grottip = self.getenv('ggrottip')
         if os.getenv('ggrottport') != None :
             if 0 <= int(os.getenv('ggrottport')) <= 65535  :  self.grottport = self.getenv('ggrottport')
         if os.getenv('gvalueoffset') != None :
             if 0 <= int(os.getenv('gvalueoffset')) <= 255  :  self.valueoffset = self.getenv('gvalueoffset')
-        if os.getenv('ggrowattip') != None :
-            try:
-                ipaddress.ip_address(os.getenv('ggrowattip'))
-                self.growattip = self.getenv('ggrowattip')
-            except:
-                if self.verbose : print("\nGrott Growatt server IP address env invalid")
+        if os.getenv('ggrowattip') != None : self.growattip = self.getenv('ggrowattip')
         if os.getenv('ggrowattport') != None :
             if 0 <= int(os.getenv('ggrowattport')) <= 65535  :  self.growattport = int(self.getenv('ggrowattport'))
             else :
@@ -572,12 +562,7 @@ class Conf :
         if os.getenv('ConnectionTimeout') != None :  self.nomqtt = self.getenv('ConnectionTimeout')
         #handle mqtt environmentals
         if os.getenv('gnomqtt') != None :  self.nomqtt = self.getenv('gnomqtt')
-        if os.getenv('gmqttip') != None :
-            try:
-                ipaddress.ip_address(os.getenv('gmqttip'))
-                self.mqttip = self.getenv('gmqttip')
-            except:
-                if self.verbose : print("\nGrott MQTT server IP address env invalid")
+        if os.getenv('gmqttip') != None : self.mqttip = self.getenv('gmqttip')
         if os.getenv('gmqttport') != None :
             if 0 <= int(os.getenv('gmqttport')) <= 65535  :  self.mqttport = int(self.getenv('gmqttport'))
             else :
@@ -607,12 +592,7 @@ class Conf :
         if os.getenv('ginflux') != None :  self.influx = self.getenv('ginflux')
         if os.getenv('ginflux2') != None :  self.influx2 = self.getenv('ginflux2')
         if os.getenv('gifdbname') != None :  self.ifdbname = self.getenv('gifdbname')
-        if os.getenv('gifip') != None :
-            try:
-                ipaddress.ip_address(os.getenv('gifip'))
-                self.ifip = self.getenv('gifip')
-            except:
-                if self.verbose : print("\nGrott InfluxDB server IP address env invalid")
+        if os.getenv('gifip') != None : self.ifip = self.getenv('gifip')
         if os.getenv('gifport') != None :
             if 0 <= int(os.getenv('gifport')) <= 65535  :  self.ifport = int(self.getenv('gifport'))
             else :
