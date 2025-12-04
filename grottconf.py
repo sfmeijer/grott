@@ -661,26 +661,15 @@ class Conf :
             #self.influxclient = InfluxDBClient(url='192.168.0.211:8086',org=self.iforg, token=self.iftoken)
             self.influxclient = InfluxDBClient(url="{}:{}".format(self.ifip, self.ifport),org=self.iforg, token=self.iftoken)
             self.ifbucket_api = self.influxclient.buckets_api()
-            self.iforganization_api = self.influxclient.organizations_api()
             self.ifwrite_api = self.influxclient.write_api(write_options=SYNCHRONOUS)
 
             try:
                 buckets = self.ifbucket_api.find_bucket_by_name(self.ifbucket)
-                organizations = self.iforganization_api.find_organizations()
-                #print(organizations)
                 if buckets == None:
                     #print("\t - " + "influxDB bucket ", self.ifbucket, "not defined")
                     #self.influx = False
                     #raise SystemExit("Grott Influxdb initialisation error")
                     return(4,"influxDB bucket {0}, not defined".format(self.ifbucket))
-
-                orgfound = False
-                for org in organizations:
-                    if org.name == self.iforg:
-                        orgfound = True
-                        break
-                if not orgfound:
-                    return(4,"influxDB organization : {0} not defined or no authorised".format(self.iforg))
 
             except Exception as e:
                 #if self.verbose :  print("\t - " + "Grott error: can not contact InfluxDB",e.message)
