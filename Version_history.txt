@@ -273,5 +273,9 @@ Complement bugfix prepared by KBraham (issue / pull request #41)
 3.2.1_20250608 (grottserver)
 - fix protocol "02" record checking for grottserver
 - Add additional debug messages for grottserver received record debugging
-
-
+1.0.0 (SFM)
+- Initial release based on 3.2.1_20250608
+- Allow hostnames for ip addresses in environment variables, i.e. 'server.growatt.com' for 'ggrowattip' or 'influxdb' for 'gifip'.
+- Fix and add missing environment variables.
+- Remove dependency on unnecessary InfluxDB V2 'All Orgs' permission.
+- Fix docker file.

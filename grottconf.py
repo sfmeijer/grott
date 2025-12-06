@@ -9,7 +9,7 @@ import logging
 #set logging definities
 #logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-vrmconf = "3.2.0_20250521"
+vrmconf = "1.0.0 (SFM)"
 
 class Conf :
     """define/proces grott configuration settings"""
